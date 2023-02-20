@@ -3,7 +3,7 @@ require 'date'
 
 class Item
   attr_reader :label, :publish_date, :archived
-  
+
   def initialize(publish_date:, archived: false)
     @id = Random.rand(1..1000)
     @publish_date = Date.parse publish_date
@@ -29,13 +29,9 @@ class Item
 
   private
 
-  def can_be_archived? 
-    p current_date = Time.now.utc.to_date
-    p res = current_date.year - (@publish_date).year
-    if res > 10
-      true
-    else
-      false
-    end
+  def can_be_archived?
+    current_date = Time.now.utc.to_date
+    res = current_date.year - @publish_date.year
+    res > 10
   end
 end

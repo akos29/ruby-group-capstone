@@ -12,7 +12,7 @@ describe Label do
     it 'add an item to a label (add_item method)', positive: true do
       label = Label.new title: 'Abc', color: 'Black'
 
-      item = label.add_item item: 'The Artist'
+      label.add_item item: 'The Artist'
       expect(label).to have_attributes(items: ['The Artist'])
     end
 
