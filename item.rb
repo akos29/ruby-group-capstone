@@ -11,7 +11,7 @@ class Item
     @genre = genre
   end
 
-  def add_author=(author)    
+  def add_author=(author)
     @author = author
   end
 
