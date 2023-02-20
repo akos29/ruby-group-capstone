@@ -1,9 +1,12 @@
-class Item
-  attr_reader :label, :publish_date
+require './label'
+require 'date'
 
+class Item
+  attr_reader :label, :publish_date, :archived
+  
   def initialize(publish_date:, archived: false)
     @id = Random.rand(1..1000)
-    @publish_date = publish_date
+    @publish_date = Date.parse publish_date
     @archived = archived
   end
 
@@ -21,12 +24,18 @@ class Item
   end
 
   def move_to_archive
-    @archived = true if can_be_archived?
+    @archived = can_be_archived?
   end
 
   private
 
-  def can_be_archived?
-    true
+  def can_be_archived? 
+    p current_date = Time.now.utc.to_date
+    p res = current_date.year - (@publish_date).year
+    if res > 10
+      true
+    else
+      false
+    end
   end
 end
