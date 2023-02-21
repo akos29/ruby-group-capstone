@@ -1,6 +1,6 @@
 require_relative 'item'
 
-class App 
+class App
   def initialize
     @items = []
     @labels = []
@@ -11,7 +11,7 @@ class App
   def list_items
     @items.each do |item|
       puts item
-    end  
+    end
   end
 
   def list_labels

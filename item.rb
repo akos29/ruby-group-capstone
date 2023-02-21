@@ -6,7 +6,7 @@ class Item
 
   def initialize(publish_date:, archived: false)
     @id = Random.rand(1..1000)
-    @publish_date = Date.strptime(publish_date, "%m-%d-%Y")
+    @publish_date = Date.strptime(publish_date, '%m-%d-%Y')
     @archived = archived
   end
 
@@ -30,6 +30,6 @@ class Item
   private
 
   def can_be_archived?
-    ((Date.today << 120) <=> @publish_date) > 0
+    ((Date.today << 120) <=> @publish_date).positive?
   end
 end

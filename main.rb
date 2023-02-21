@@ -2,7 +2,7 @@ require_relative 'app'
 
 class Main < App
   def menu
-    puts  
+    puts
     puts 'Please choose a number for
     the following options:'
     puts '1 - List all items.'
