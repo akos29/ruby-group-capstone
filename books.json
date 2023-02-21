@@ -10,7 +10,21 @@
     "publisher": "Kuraz",
     "cover_state": "good",
     "publish_date": "2022-12-20",
-    "label": "#<Label:0x00000179d33f85d8>",
+    "label": null,
+    "archived": false
+  },
+  {
+    "publisher": "asd",
+    "cover_state": "bad",
+    "publish_date": "2022-02-02",
+    "label": null,
+    "archived": false
+  },
+  {
+    "publisher": "asd",
+    "cover_state": "good",
+    "publish_date": "2020-02-02",
+    "label": "#<Label:0x00000138f675a898>",
     "archived": false
   }
 ]

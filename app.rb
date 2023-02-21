@@ -2,10 +2,10 @@ require_relative 'item'
 require_relative 'book'
 require_relative 'author'
 require_relative 'label'
-
+require_relative 'preserve_book'
+require_relative 'preserve_label'
 
 class App
-  require_relative 'preserve_book'
   def initialize
     @items = []
     @labels = []
@@ -15,6 +15,7 @@ class App
   end
 
   include PreserveBooks
+  include PreserveLabels
   def list_all_books
     @books.each do |book|
       puts "#{book.publisher} -- #{book.cover_state} "
@@ -90,6 +91,6 @@ class App
 
   def save_all
     save_books(@books)
-    save_label(@labels)
+    save_labels(@labels)
   end
 end

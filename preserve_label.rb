@@ -1,7 +1,7 @@
 require 'json'
 require 'date'
 
-module Preservelabels
+module PreserveLabels
   def save_labels(labels)
     labels_arr = []
     labels_path = 'labels.json'
