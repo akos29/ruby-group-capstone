@@ -1,5 +1,5 @@
 require 'date'
-require "./item"
+require './item'
 
 class Game < Item
   attr_accessor :last_played_at, :name
@@ -15,5 +15,3 @@ class Game < Item
     super && Date.today.year - @last_played_at.year > 2
   end
 end
-
-
