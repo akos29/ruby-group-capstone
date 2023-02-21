@@ -5,5 +5,12 @@
     "publish_date": "2012-11-02",
     "label": null,
     "archived": false
+  },
+  {
+    "publisher": "Kuraz",
+    "cover_state": "good",
+    "publish_date": "2022-12-20",
+    "label": "#<Label:0x00000179d33f85d8>",
+    "archived": false
   }
 ]

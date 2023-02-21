@@ -53,7 +53,9 @@ class App
   def add_label
     label_title = accept_input 'Enter label title:'
     label_color = accept_input 'Enter label color:'
-    Label.new(title: label_title, color: label_color)
+    label = Label.new(title: label_title, color: label_color)
+    @labels.push(label)
+    label
   end
 
   def add_book
@@ -67,23 +69,27 @@ class App
     when 2
       label = list_labels
     end
-    publisher = accept_input 'Enter Publisher:'
-    publish_date = accept_input 'Enter publish date[MM-DD-YYYY]:'
-    cover_state = accept_input 'Enter Cover state[good, bad]:'
-    book = Book.new(publisher: publisher, publish_date: publish_date, cover_state: cover_state)
 
+    publisher = accept_input 'Enter Publisher:'
+    publish_date = accept_input 'Enter publish date[YYYY-MM-DD]:'
+    cover_state = accept_input 'Enter Cover state[good, bad]:'
+
+    book = Book.new(publisher: publisher, publish_date: publish_date, cover_state: cover_state)
+    # created association between book and label
+    book.label = label
+
+    # will be selected or created a new genere
     genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
     book.add_genre = genre
-
+    # will be selected or created a new author
     author = accept_input 'Enter authors:'
     book.add_author = author
-
-    book.label = label
 
     @books.push(book)
   end
 
   def save_all
     save_books(@books)
+    save_label(@labels)
   end
 end
