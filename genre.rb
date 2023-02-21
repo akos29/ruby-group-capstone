@@ -1,6 +1,6 @@
 require './item'
 
-class Source
+class Genre
   attr_accessor :name, :items
 
   def initialize(name:)
