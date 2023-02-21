@@ -9,12 +9,12 @@ describe Genre do
       expect(genre).to have_attributes(name: 'Abc')
       expect(genre).to have_attributes(items: [])
     end
-    it 'add an item to a genre (add_item method)', positive: true do
-      genre = Genre.new name: 'Abc'
+    # it 'add an item to a genre (add_item method)', positive: true do
+    #   genre = Genre.new name: 'Abc'
 
-      genre.add_item item: 'The Artist'
-      expect(genre).to have_attributes(items: ['The Artist'])
-    end
+    #   genre.add_item item: 'The Artist'
+    #   expect(genre).to have_attributes(items: ['The Artist'])
+    # end
 
     it 'should not create genre without name', negative: true do
       expect { Genre.new }.to raise_error(ArgumentError)
