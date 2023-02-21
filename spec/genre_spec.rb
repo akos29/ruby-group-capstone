@@ -1,5 +1,5 @@
 require './genre'
-require './musicalbum'
+require './item'
 
 describe Genre do
   context 'Testing genre class' do
@@ -11,15 +11,15 @@ describe Genre do
     end
     it 'add an item to a genre (add_item method)', positive: true do
       genre = Genre.new name: 'Abc'
-      newalbum = MusicAlbum.new(publish_date: '2-21-2023', on_spotify: true)
-      genre.add_item item: newalbum
-      expect(genre).to have_attributes(items: [newalbum])
+      newitem = Item.new(publish_date: '2-21-2023')
+      genre.add_item item: newitem
+      expect(genre).to have_attributes(items: [newitem])
     end
     it 'add a genre to an item (add_item method)', positive: true do
       newgenre = Genre.new name: 'Abc'
-      newalbum = MusicAlbum.new(publish_date: '2-21-2023', on_spotify: true)
-      newgenre.add_item item: newalbum
-      expect(newalbum.genre).to eq newgenre
+      newitem = Item.new(publish_date: '2-21-2023')
+      newgenre.add_item item: newitem
+      expect(newitem.genre).to eq newgenre
     end
 
     it 'should not create genre without name', negative: true do
