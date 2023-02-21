@@ -3,15 +3,18 @@ require_relative 'book'
 require_relative 'author'
 require_relative 'label'
 
+
 class App
+  require_relative 'preserve_book'
   def initialize
     @items = []
     @labels = []
     @authors = []
     @genres = []
-    @books = []
+    @books = fetch_books
   end
 
+  include PreserveBooks
   def list_all_books
     @books.each do |book|
       puts "#{book.publisher} -- #{book.cover_state} "
@@ -47,7 +50,23 @@ class App
     gets.chomp
   end
 
+  def add_label
+    label_title = accept_input 'Enter label title:'
+    label_color = accept_input 'Enter label color:'
+    Label.new(title: label_title, color: label_color)
+  end
+
   def add_book
+    choice = accept_input("You can Add NEW(1) or SELECT (2) existing Label\n
+      (1) Add new label\n
+      (2) Select label ")
+
+    case choice.to_i
+    when 1
+      label = add_label
+    when 2
+      label = list_labels
+    end
     publisher = accept_input 'Enter Publisher:'
     publish_date = accept_input 'Enter publish date[MM-DD-YYYY]:'
     cover_state = accept_input 'Enter Cover state[good, bad]:'
@@ -58,12 +77,13 @@ class App
 
     author = accept_input 'Enter authors:'
     book.add_author = author
-    label_title = accept_input 'Enter label title:'
-    label_color = accept_input 'Enter label color:'
-    label = Label.new(title: label_title, color: label_color)
 
     book.label = label
 
     @books.push(book)
+  end
+
+  def save_all
+    save_books(@books)
   end
 end

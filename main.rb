@@ -38,7 +38,7 @@ class Main < App
     loop do
       menu
       choice = gets.chomp.to_i
-      case ch
+      case choice
       when 1..6
         list_methods(choice)
       when 7
@@ -53,6 +53,7 @@ class Main < App
         puts 'Invalid input.'
       end
     end
+    save_all
   end
 end
 
