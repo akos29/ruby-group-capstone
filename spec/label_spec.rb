@@ -9,11 +9,13 @@ describe Label do
       expect(label).to have_attributes(title: 'Abc')
       expect(label).to have_attributes(color: 'Black')
     end
-    it 'add an item to a label (add_item method)', positive: true do
-      label = Label.new title: 'Abc', color: 'Black'
+    it 'add an item to a Label and association with Item (1 to N)', positive: true do
+      label = Label.new title: 'Abc', color: 'good'
+      item = Item.new publish_date: '1-10-2000'
 
-      label.add_item item: 'The Artist'
-      expect(label).to have_attributes(items: ['The Artist'])
+      label.add_item = item
+      expect(label.items[0]).to be_instance_of(Item)
+      expect(item.label).to be_instance_of(Label)
     end
 
     it 'should not create label without Title or color', negative: true do
