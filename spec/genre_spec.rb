@@ -15,6 +15,12 @@ describe Genre do
       genre.add_item item: newalbum
       expect(genre).to have_attributes(items: [newalbum])
     end
+    it 'add a genre to an item (add_item method)', positive: true do
+      newgenre = Genre.new name: 'Abc'
+      newalbum = MusicAlbum.new(publish_date: '2-21-2023', on_spotify: true)
+      newgenre.add_item item: newalbum
+      expect(newalbum.genre).to eq newgenre
+    end
 
     it 'should not create genre without name', negative: true do
       expect { Genre.new }.to raise_error(ArgumentError)
