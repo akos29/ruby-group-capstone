@@ -1,16 +1,18 @@
 require './item'
 
 class Author
-  attr_accessor :name, :books
+  attr_accessor :first_name, :last_name
+  attr_reader :id, :items
 
-  def initialize(name:)
+  def initialize(first_name, last_name)
     @id = Random.rand(1..1000)
-    @name = name
-    @books = []
+    @first_name = first_name
+    @last_name = last_name
+    @items = []
   end
 
-  def add_book(book:)
-    @books.push(book)
-    # book.label = self
+  def add_item(item)
+    @items << item unless @item.include?(self)
+    item.author = self
   end
 end
