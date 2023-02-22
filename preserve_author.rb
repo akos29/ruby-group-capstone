@@ -23,7 +23,7 @@ module PreserveAuthors
 
     JSON.parse(File.read(authors_path)).each do |author|
       data << author.new(id: author['id'], last_name: author['last_name'],
-                        first_name: author['first_name'])
+                         first_name: author['first_name'])
     end
 
     data

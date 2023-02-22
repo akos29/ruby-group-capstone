@@ -10,7 +10,7 @@ class Game < Item
     @name = name
     @multiplayer = multiplayer
   end
-  
+
   def move_to_archive
     can_be_archived? && super
   end

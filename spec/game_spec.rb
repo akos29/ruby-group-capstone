@@ -7,13 +7,15 @@ describe Game do
       expect(game.publish_date).to be_instance_of(Date)
       expect(game).to have_attributes(name: 'Fruit Ninja')
     end
-    it 'should return true if parent\'s method returns true OR if last_played_at greater than "2 years".', positive: true do
+    it 'should return true if parent\'s method returns true OR if last_played_at greater than "2 years".',
+       positive: true do
       game = Game.new publish_date: '2010-05-21', name: 'Fruit Ninja', last_played_at: '2011-05-21'
 
       res = game.move_to_archive
       expect(res).to be true
     end
-    it 'should return false if parent\'s method returns true AND if last_played_at smaller than "2 years".', positive: true do
+    it 'should return false if parent\'s method returns true AND if last_played_at smaller than "2 years".',
+       positive: true do
       game = Game.new publish_date: '2010-05-21', name: 'Fruit Ninja', last_played_at: '2022-05-21'
       res = game.move_to_archive
       expect(res).to be false
