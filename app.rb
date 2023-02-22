@@ -12,7 +12,6 @@ require_relative 'genre'
 
 class App
   def initialize
-    @items = []
     @labels = fetch_labels
     @authors = fetch_authors
     @games = fetch_games
@@ -25,50 +24,66 @@ class App
   include PreserveLabels
   include PreserveGames
   include PreserveAuthors
+  def list_end_tag
+    puts '-' * 100
+    accept_input('Press any key to continue ...')
+  end
+
   def list_all_books
-    puts '*' * 100
+    puts '-' * 100
     puts "Publisher\tCover State\t Published Date\t "
     puts '-' * 50
+    puts 'There is no Book registered yet.' if @books.empty?
     @books.each do |book|
       puts "#{book.publisher}\t\t#{book.cover_state}\t\t#{book.publish_date}"
     end
-    puts '*' * 100
-    accept_input('Press any key to continue ...')
+    list_end_tag
   end
 
   def list_music_albums
+    puts 'Album on spotify'
+    puts '-' * 50
+    puts 'There is no Album registered yet.' if @musicalbums.empty?
     @musicalbums.each do |musicalbum|
       puts "#{musicalbum.on_spotify} "
     end
+    list_end_tag
   end
 
   def list_all_games
-    puts '*' * 100
-    puts "Game Name\t Last Played"
+    puts '-' * 100
+    puts "Game Name}\t\tLast played Date}"
     puts '-' * 50
+    puts 'There is no Game registered yet.' if @games.empty?
     @games.each do |game|
       puts "#{game.name}\t\t#{game.last_played_at}"
     end
-    puts '*' * 100
-    accept_input('Press any key to continue ...')
+    list_end_tag
   end
 
   def list_labels
+    add_label if @labels.empty?
+    puts "index\t\tlabel color\t\tlabel title"
+    puts '-' * 50
+    index = 0
     @labels.each do |label|
-      puts "#{label.color}\t\t#{label.title}"
+      puts "#{index + 1}\t\t#{label.color}\t\t#{label.title}"
     end
+    list_end_tag
   end
 
   def list_authors
     @authors.each do |author|
       puts author
     end
+    list_end_tag
   end
 
   def list_genres
     @genres.each do |genre|
       puts genre
     end
+    list_end_tag
   end
 
   def accept_input(msg)
@@ -122,8 +137,6 @@ class App
     else
       p '.' * 50
     end
-
-
     # will be selected or created a new genere
     genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
     begin
@@ -161,17 +174,6 @@ class App
     on_spotify = accept_input 'Enter if it is available on spotify [true, false]:'
     publish_date = accept_input 'Enter publish date[MM-DD-YYYY]:'
     musicalbum = MusicAlbum.new(publish_date: publish_date, on_spotify: on_spotify)
-
-    genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
-    musicalbum.genre = genre
-
-    author = accept_input 'Enter authors:'
-    musicalbum.add_author = author
-    label_title = accept_input 'Enter label title:'
-    label_color = accept_input 'Enter label color:'
-    label = Label.new(title: label_title, color: label_color)
-
-    musicalbum.label = label
 
     @musicalbums.push(musicalbum)
   end

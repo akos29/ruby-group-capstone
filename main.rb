@@ -2,9 +2,8 @@ require_relative 'app'
 
 class Main < App
   def menu
-    puts
-    puts 'Please choose a number for
-    the following options:'
+    puts '-' * 100
+    puts 'Please choose a number for the following options:'
     puts '1 - List all books.'
     puts '2 - List all music albums.'
     puts '3 - List all games.'
@@ -15,6 +14,7 @@ class Main < App
     puts '8 - Add a music album.'
     puts '9 - Add a game.'
     puts '10 - Exit.'
+    puts '-' * 100
   end
 
   def list_methods(choice)
