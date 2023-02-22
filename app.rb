@@ -20,6 +20,7 @@ class App
   include PreserveBooks
   include PreserveLabels
   include PreserveMusicAlbums
+  include PreserveGenres
 
   def list_all_books
     puts '*' * 100
@@ -132,5 +133,5 @@ class App
     save_labels(@labels)
     save_musicalbums(@musicalbums)
     save_genres(@genres)
-  end 
+  end
 end
