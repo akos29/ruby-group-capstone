@@ -14,11 +14,13 @@ class App
     @authors = []
     @genres = []
     @books = fetch_books
-    @musicalbums = []
+    @musicalbums = fetch_musicalbums
   end
 
   include PreserveBooks
   include PreserveLabels
+  include PreserveMusicAlbums
+
   def list_all_books
     puts '*' * 100
     puts "Publisher\tCover State\t Published Date\t "
@@ -32,7 +34,7 @@ class App
 
   def list_music_albums
     @musicalbums.each do |musicalbum|
-      puts "#{musicalbum.on_spotify} "
+      puts "#{musicalbum.on_spotify} -- #{musicalbum.publish_date} "
     end
   end
 
@@ -113,25 +115,18 @@ class App
 
   def add_music_album
     on_spotify = accept_input 'Enter if it is available on spotify [true, false]:'
-    publish_date = accept_input 'Enter publish date[MM-DD-YYYY]:'
+    publish_date = accept_input 'Enter publish date[YYYY-MM-DD]:'
     musicalbum = MusicAlbum.new(publish_date: publish_date, on_spotify: on_spotify)
 
-    genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
+    genre = accept_input 'Enter genre[Rock, Pop ...]:'
     musicalbum.genre = genre
-
-    author = accept_input 'Enter authors:'
-    musicalbum.add_author = author
-    label_title = accept_input 'Enter label title:'
-    label_color = accept_input 'Enter label color:'
-    label = Label.new(title: label_title, color: label_color)
-
-    musicalbum.label = label
-
+    @genres.push(Genre.new(name: genre)) unless @genres.include?(genre)
     @musicalbums.push(musicalbum)
   end
 
   def save_all
     save_books(@books)
     save_labels(@labels)
-  end
+    save_musicalbums(@musicalbums)
+  end 
 end

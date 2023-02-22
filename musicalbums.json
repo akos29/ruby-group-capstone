@@ -1,0 +1,23 @@
+[
+  {
+    "id": 50,
+    "publish_date": "2018-03-02",
+    "archived": false,
+    "on_spotify": true,
+    "genre": "Rock"
+  },
+  {
+    "id": 542,
+    "publish_date": "2011-01-01",
+    "archived": false,
+    "on_spotify": false,
+    "genre": "Jazz"
+  },
+  {
+    "id": 160,
+    "publish_date": "2020-01-01",
+    "archived": false,
+    "on_spotify": true,
+    "genre": "Pop"
+  }
+]
