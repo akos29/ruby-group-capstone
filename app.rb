@@ -7,21 +7,25 @@ require_relative 'preserve_book'
 require_relative 'preserve_label'
 require_relative 'preserve_game'
 require_relative 'preserve_author'
+require_relative 'preserve_musicalbums'
+require_relative 'preserve_genres'
 require_relative 'musicalbum'
 require_relative 'genre'
 
 class App
   def initialize
+    @genres = fetch_genres
     @labels = fetch_labels
     @authors = fetch_authors
     @games = fetch_games
-    @genres = []
     @books = fetch_books
-    @musicalbums = []
+    @musicalbums = fetch_musicalbums
   end
 
   include PreserveBooks
   include PreserveLabels
+  include PreserveMusicAlbums
+  include PreserveGenres
   include PreserveGames
   include PreserveAuthors
   def list_end_tag
@@ -41,11 +45,12 @@ class App
   end
 
   def list_music_albums
-    puts 'Album on spotify'
+    puts '*' * 100
+    puts "On Spotify\tGenre\t Published Date\t "
     puts '-' * 50
     puts 'There is no Album registered yet.' if @musicalbums.empty?
     @musicalbums.each do |musicalbum|
-      puts "#{musicalbum.on_spotify} "
+      puts "#{musicalbum.on_spotify} -- #{musicalbum.genre} -- #{musicalbum.publish_date} "
     end
     list_end_tag
   end
@@ -97,7 +102,7 @@ class App
     begin
       label = Label.new(title: label_title, color: label_color)
     rescue StandardError
-      p 'Cannot save label'
+      # p 'Cannot save label'
     else
       @labels.push(label)
       label
@@ -130,32 +135,32 @@ class App
 
     book = Book.new(publisher: publisher, publish_date: publish_date, cover_state: cover_state)
     # created association between book and label
-    begin
-      book.label = label
-    rescue StandardError => e
-      p "cannot add label. Error: #{e}"
-    else
-      p '.' * 50
-    end
-    # will be selected or created a new genere
+    #   begin
+    book.label = label
+    #   rescue StandardError => e
+    #     p "cannot add label. Error: #{e}"
+    #   else
+    #     p '.' * 50
+    #   end
+    #   # will be selected or created a new genere
     genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
-    begin
-      book.add_genre = genre
-    rescue StandardError => e
-      p "cannot add genre. Error: #{e}"
-    else
-      p '.' * 50
-    end
+    #   begin
+    book.add_genre = genre
+    #   rescue StandardError => e
+    #     p "cannot add genre. Error: #{e}"
+    #   else
+    #     p '.' * 50
+    #   end
 
-    # will be selected or created a new author
+    #   # will be selected or created a new author
     author = accept_input 'Enter authors:'
-    begin
-      book.add_author = author
-    rescue StandardError => e
-      p "cannot add gener. Error: #{e}"
-    else
-      p '.' * 50
-    end
+    #   begin
+    book.add_author = author
+    #   rescue StandardError => e
+    #     p "cannot add gener. Error: #{e}"
+    #   else
+    #     p '.' * 50
+    #   end
     @books.push(book)
   end
 
@@ -172,15 +177,20 @@ class App
 
   def add_music_album
     on_spotify = accept_input 'Enter if it is available on spotify [true, false]:'
-    publish_date = accept_input 'Enter publish date[MM-DD-YYYY]:'
+    publish_date = accept_input 'Enter publish date[YYYY-MM-DD]:'
     musicalbum = MusicAlbum.new(publish_date: publish_date, on_spotify: on_spotify)
 
+    # genre = accept_input 'Enter genre[Rock, Pop ...]:'
+    # musicalbum.genre = genre
+    # @genres.push(Genre.new(name: genre)) unless @genres.include?(genre)
     @musicalbums.push(musicalbum)
   end
 
   def save_all
     save_books(@books)
     save_labels(@labels)
+    save_musicalbums(@musicalbums)
+    save_genres(@genres)
     save_authors(@authors)
     save_games(@games)
   end

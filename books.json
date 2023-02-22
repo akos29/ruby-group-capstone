@@ -33,19 +33,5 @@
     "publish_date": "2222-02-02",
     "label": null,
     "archived": false
-  },
-  {
-    "publisher": "asd",
-    "cover_state": "asd",
-    "publish_date": "2222-02-02",
-    "label": null,
-    "archived": false
-  },
-  {
-    "publisher": "Abc ",
-    "cover_state": "good",
-    "publish_date": "2022-02-03",
-    "label": null,
-    "archived": false
   }
 ]
