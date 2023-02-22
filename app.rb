@@ -10,11 +10,18 @@ class App
     @authors = []
     @genres = []
     @books = []
+    @musicalbums = []
   end
 
   def list_all_books
     @books.each do |book|
       puts "#{book.publisher} -- #{book.cover_state} "
+    end
+  end
+
+  def list_music_albums
+    @musicalbums.each do |musicalbum|
+      puts "#{musicalbum.on_spotify} "
     end
   end
 

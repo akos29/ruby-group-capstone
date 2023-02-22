@@ -31,6 +31,6 @@ class Item
   private
 
   def can_be_archived?
-    ((Date.today << 120) <=> @publish_date).positive?
+    ((Date.today << 120) <=> @publish_date).positive? 
   end
 end
