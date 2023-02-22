@@ -1,7 +1,6 @@
 require './app'
 require './preserve_label'
 
-
 describe App do
   describe 'Testing App class' do
     # context '#add_book()' do

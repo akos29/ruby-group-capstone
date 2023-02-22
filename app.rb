@@ -7,7 +7,6 @@ require_relative 'preserve_label'
 require_relative 'musicalbum'
 require_relative 'genre'
 
-
 class App
   def initialize
     @items = []
