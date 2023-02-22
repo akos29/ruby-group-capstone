@@ -54,8 +54,6 @@ class App
   end
 
   def list_labels
-    add_label
-
     @labels.each do |label|
       puts "#{label.color}\t\t#{label.title}"
     end
@@ -102,23 +100,6 @@ class App
       label = add_label
     when 2
       label = list_labels
-    end
-    puts '-' * 50
-
-    label
-  end
-
-  def opt_genre
-    puts '-' * 50
-    choice = accept_input("You can Add NEW(1) or SELECT (2) existing Genre\n
-      (1) Add new genre\n
-      (2) Select genre \n
-      (Anykey) Escape")
-    case choice.to_i
-    when 1
-      label = add_genre
-    when 2
-      label = list_genres
     end
     puts '-' * 50
 
@@ -197,10 +178,7 @@ class App
 
   def save_all
     save_books(@books)
-
-
     save_labels(@labels)
-
     save_authors(@authors)
     save_games(@games)
   end
