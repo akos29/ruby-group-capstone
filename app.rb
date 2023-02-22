@@ -12,7 +12,7 @@ class App
     @items = []
     @labels = []
     @authors = []
-    @genres = []
+    @genres = fetch_genres
     @books = fetch_books
     @musicalbums = fetch_musicalbums
   end
@@ -33,8 +33,11 @@ class App
   end
 
   def list_music_albums
+    puts '*' * 100
+    puts "On Spotify\tGenre\t Published Date\t "
+    puts '-' * 50
     @musicalbums.each do |musicalbum|
-      puts "#{musicalbum.on_spotify} -- #{musicalbum.publish_date} "
+      puts "#{musicalbum.on_spotify} -- #{musicalbum.genre} -- #{musicalbum.publish_date} "
     end
   end
 
@@ -128,5 +131,6 @@ class App
     save_books(@books)
     save_labels(@labels)
     save_musicalbums(@musicalbums)
+    save_genres(@genres)
   end 
 end
