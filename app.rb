@@ -99,15 +99,34 @@ class App
 
     book = Book.new(publisher: publisher, publish_date: publish_date, cover_state: cover_state)
     # created association between book and label
-    book.label = label
+    begin
+      book.label = label
+    rescue StandardError => e
+      p "cannot add label. Error: #{e}"
+    else
+      p '>' * 50
+    end
+
 
     # will be selected or created a new genere
     genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
-    book.add_genre = genre
+    begin
+      book.add_genre = genre
+    rescue StandardError => e
+      p "cannot add gener. Error: #{e}"
+    else
+      p '>' * 50
+    end
+
     # will be selected or created a new author
     author = accept_input 'Enter authors:'
-    book.add_author = author
-
+    begin
+      book.add_author = author
+    rescue StandardError => e
+      p "cannot add gener. Error: #{e}"
+    else
+      p '>' * 50
+    end
     @books.push(book)
   end
 

@@ -12,7 +12,7 @@ describe Label do
     end
     it 'add an item to a Label and association with Item (1 to N)', positive: true do
       label = Label.new title: 'Abc', color: 'good'
-      item = Item.new publish_date: '1-10-2000'
+      item = Item.new publish_date: '2000-2-1'
 
       label.add_item = item
       expect(label.items[0]).to be_instance_of(Item)
