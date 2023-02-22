@@ -1,11 +1,1 @@
-[
-  {
-    "name": "Jazz"
-  },
-  {
-    "name": "Rock"
-  },
-  {
-    "name": "Pop"
-  }
-]
+[{"name":"Jazz"},{"name":"Rock"},{"name":"Pop"}]

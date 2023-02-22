@@ -4,12 +4,13 @@ module PreserveGenres
   def fetch_genres
     genres_array = []
     genres_file = 'genres.json'
-    return genres_array if !File.exist?(genres_file) || File.read(genres_file) == ''
 
-    json_genres = File.read('genres.json')
-    data_genres = JSON.parse(json_genres)
-    class_genres = data_genres.map { |genre| Genre.new(genre['name']) }
-    class_genres.map { |genre| genres_array.push(genre) }
+    return genres_array if File.zero?(genres_file)
+
+    JSON.parse(File.read(genres_file)).each do |genre|
+      genres_array << Genre.new(name: genre['name'])
+    end
+
     genres_array
   end
 

@@ -9,7 +9,7 @@ module PreserveMusicAlbums
     json_musicalbums = File.read('musicalbums.json')
     data_musicalbums = JSON.parse(json_musicalbums)
     class_musicalbums = data_musicalbums.map do |musicalbum|
-      MusicAlbum.new(musicalbum['publish_date'], musicalbum['on_spotify'])
+      MusicAlbum.new(publish_date: musicalbum['publish_date'], on_spotify: musicalbum['on_spotify'])
     end
     class_musicalbums.map { |musicalbum| musicalbums_array.push(musicalbum) }
     musicalbums_array

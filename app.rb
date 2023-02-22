@@ -180,9 +180,9 @@ class App
     publish_date = accept_input 'Enter publish date[YYYY-MM-DD]:'
     musicalbum = MusicAlbum.new(publish_date: publish_date, on_spotify: on_spotify)
 
-    genre = accept_input 'Enter genre[Rock, Pop ...]:'
-    musicalbum.genre = genre
-    @genres.push(Genre.new(name: genre)) unless @genres.include?(genre)
+    # genre = accept_input 'Enter genre[Rock, Pop ...]:'
+    # musicalbum.genre = genre
+    # @genres.push(Genre.new(name: genre)) unless @genres.include?(genre)
     @musicalbums.push(musicalbum)
   end
 
