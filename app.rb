@@ -100,7 +100,7 @@ class App
     begin
       label = Label.new(title: label_title, color: label_color)
     rescue StandardError
-      p 'Cannot save label'
+      # p 'Cannot save label'
     else
       @labels.push(label)
       label
@@ -133,32 +133,32 @@ class App
 
     book = Book.new(publisher: publisher, publish_date: publish_date, cover_state: cover_state)
     # created association between book and label
-    begin
-      book.label = label
-    rescue StandardError => e
-      p "cannot add label. Error: #{e}"
-    else
-      p '.' * 50
-    end
-    # will be selected or created a new genere
+    #   begin
+    book.label = label
+    #   rescue StandardError => e
+    #     p "cannot add label. Error: #{e}"
+    #   else
+    #     p '.' * 50
+    #   end
+    #   # will be selected or created a new genere
     genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
-    begin
-      book.add_genre = genre
-    rescue StandardError => e
-      p "cannot add genre. Error: #{e}"
-    else
-      p '.' * 50
-    end
+    #   begin
+    book.add_genre = genre
+    #   rescue StandardError => e
+    #     p "cannot add genre. Error: #{e}"
+    #   else
+    #     p '.' * 50
+    #   end
 
-    # will be selected or created a new author
+    #   # will be selected or created a new author
     author = accept_input 'Enter authors:'
-    begin
-      book.add_author = author
-    rescue StandardError => e
-      p "cannot add gener. Error: #{e}"
-    else
-      p '.' * 50
-    end
+    #   begin
+    book.add_author = author
+    #   rescue StandardError => e
+    #     p "cannot add gener. Error: #{e}"
+    #   else
+    #     p '.' * 50
+    #   end
     @books.push(book)
   end
 
