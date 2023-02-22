@@ -26,5 +26,12 @@
     "publish_date": "2020-02-02",
     "label": null,
     "archived": false
+  },
+  {
+    "publisher": "asd",
+    "cover_state": "bad",
+    "publish_date": "2222-02-02",
+    "label": "#<Label:0x00000233d35ce410>",
+    "archived": false
   }
 ]
