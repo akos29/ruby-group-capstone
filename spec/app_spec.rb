@@ -5,9 +5,9 @@ require './preserve_label'
 describe App do
   describe 'Testing App class' do
     # context '#add_book()' do
-    
+
     # end
-    before(:all) do 
+    before(:all) do
       @label = Label.new title: 'Gift', color: 'color'
     end
     context '#save_all()' do

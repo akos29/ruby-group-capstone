@@ -31,7 +31,14 @@
     "publisher": "asd",
     "cover_state": "bad",
     "publish_date": "2222-02-02",
-    "label": "#<Label:0x00000233d35ce410>",
+    "label": null,
+    "archived": false
+  },
+  {
+    "publisher": "asd",
+    "cover_state": "asd",
+    "publish_date": "2222-02-02",
+    "label": "#<Label:0x000001a9d706e3e8>",
     "archived": false
   }
 ]
