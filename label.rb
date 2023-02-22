@@ -10,8 +10,8 @@ class Label
     @items = []
   end
 
-  def add_item(item:)
+  def add_item=(item)
     @items.push(item)
-    # item.label = self
+    item.label = self
   end
 end
