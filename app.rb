@@ -134,33 +134,27 @@ class App
     cover_state = accept_input 'Enter Cover state[good, bad]:'
 
     book = Book.new(publisher: publisher, publish_date: publish_date, cover_state: cover_state)
-    # created association between book and label
-    #   begin
-    book.label = label
-    #   rescue StandardError => e
-    #     p "cannot add label. Error: #{e}"
-    #   else
-    #     p '.' * 50
-    #   end
-    #   # will be selected or created a new genere
+    created association between book and label
+    begin
+      book.label = label
+    rescue StandardError
+      p 'cannot add label. Error occured.'
+    end
+    # will be selected or created a new genere
     genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
-    #   begin
-    book.add_genre = genre
-    #   rescue StandardError => e
-    #     p "cannot add genre. Error: #{e}"
-    #   else
-    #     p '.' * 50
-    #   end
+    begin
+      book.add_genre = genre
+    rescue StandardError
+      p 'cannot add genre. Error occured.'
+    end
 
-    #   # will be selected or created a new author
+    # will be selected or created a new author
     author = accept_input 'Enter authors:'
-    #   begin
-    book.add_author = author
-    #   rescue StandardError => e
-    #     p "cannot add gener. Error: #{e}"
-    #   else
-    #     p '.' * 50
-    #   end
+    begin
+      book.add_author = author
+    rescue StandardError
+      p 'cannot add gener. Error occured.'
+    end
     @books.push(book)
   end
 
