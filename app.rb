@@ -7,6 +7,8 @@ require_relative 'preserve_book'
 require_relative 'preserve_label'
 require_relative 'preserve_game'
 require_relative 'preserve_author'
+require_relative 'preserve_musicalbums'
+require_relative 'preserve_genres'
 require_relative 'musicalbum'
 require_relative 'genre'
 
