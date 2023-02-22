@@ -3,7 +3,7 @@ require './book'
 describe Book do
   context 'Test Book class' do
     it 'should create an Book with published date, publisher and cover_state provided', positive: true do
-      book = Book.new publish_date: '02-23-2023', publisher: 'Penguin Random House', cover_state: 'Done'
+      book = Book.new publish_date: '2023-12-20', publisher: 'Penguin Random House', cover_state: 'Done'
       expect(book.publish_date).to be_instance_of(Date)
       expect(book).to have_attributes(publisher: 'Penguin Random House')
     end

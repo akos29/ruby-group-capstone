@@ -53,6 +53,7 @@ class Main < App
         puts 'Invalid input.'
       end
     end
+    save_all
   end
 end
 

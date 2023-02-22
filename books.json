@@ -1,0 +1,44 @@
+[
+  {
+    "publisher": "Abc",
+    "cover_state": "bad",
+    "publish_date": "2012-11-02",
+    "label": null,
+    "archived": false
+  },
+  {
+    "publisher": "Kuraz",
+    "cover_state": "good",
+    "publish_date": "2022-12-20",
+    "label": null,
+    "archived": false
+  },
+  {
+    "publisher": "asd",
+    "cover_state": "bad",
+    "publish_date": "2022-02-02",
+    "label": null,
+    "archived": false
+  },
+  {
+    "publisher": "asd",
+    "cover_state": "good",
+    "publish_date": "2020-02-02",
+    "label": null,
+    "archived": false
+  },
+  {
+    "publisher": "asd",
+    "cover_state": "bad",
+    "publish_date": "2222-02-02",
+    "label": null,
+    "archived": false
+  },
+  {
+    "publisher": "asd",
+    "cover_state": "asd",
+    "publish_date": "2222-02-02",
+    "label": "#<Label:0x000001a9d706e3e8>",
+    "archived": false
+  }
+]
