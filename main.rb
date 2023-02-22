@@ -24,7 +24,7 @@ class Main < App
     when 2
       list_music_albums
     when 3
-      list_games
+      list_all_games
     when 4
       list_genres
     when 5

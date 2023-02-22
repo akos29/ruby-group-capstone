@@ -1,17 +1,21 @@
 require_relative 'item'
 require_relative 'book'
+require_relative 'game'
 require_relative 'author'
 require_relative 'label'
 require_relative 'preserve_book'
 require_relative 'preserve_label'
+require_relative 'preserve_game'
+require_relative 'preserve_author'
 require_relative 'musicalbum'
 require_relative 'genre'
 
 class App
   def initialize
     @items = []
-    @labels = []
-    @authors = []
+    @labels = fetch_labels
+    @authors = fetch_authors
+    @games = fetch_games
     @genres = []
     @books = fetch_books
     @musicalbums = []
@@ -19,6 +23,8 @@ class App
 
   include PreserveBooks
   include PreserveLabels
+  include PreserveGames
+  include PreserveAuthors
   def list_all_books
     puts '*' * 100
     puts "Publisher\tCover State\t Published Date\t "
@@ -36,15 +42,22 @@ class App
     end
   end
 
-  def list_items
-    @items.each do |item|
-      puts item
+  def list_all_games
+    puts '*' * 100
+    puts "Game Name\t Last Played"
+    puts '-' * 50
+    @games.each do |game|
+      puts "#{game.name}\t\t#{game.last_played_at}"
     end
+    puts '*' * 100
+    accept_input('Press any key to continue ...')
   end
 
   def list_labels
+    add_label
+
     @labels.each do |label|
-      puts label
+      puts "#{label.color}\t\t#{label.title}"
     end
   end
 
@@ -68,9 +81,14 @@ class App
   def add_label
     label_title = accept_input 'Enter label title:'
     label_color = accept_input 'Enter label color:'
-    label = Label.new(title: label_title, color: label_color)
-    @labels.push(label)
-    label
+    begin
+      label = Label.new(title: label_title, color: label_color)
+    rescue StandardError
+      p 'Cannot save label'
+    else
+      @labels.push(label)
+      label
+    end
   end
 
   def opt_lable
@@ -84,6 +102,23 @@ class App
       label = add_label
     when 2
       label = list_labels
+    end
+    puts '-' * 50
+
+    label
+  end
+
+  def opt_genre
+    puts '-' * 50
+    choice = accept_input("You can Add NEW(1) or SELECT (2) existing Genre\n
+      (1) Add new genre\n
+      (2) Select genre \n
+      (Anykey) Escape")
+    case choice.to_i
+    when 1
+      label = add_genre
+    when 2
+      label = list_genres
     end
     puts '-' * 50
 
@@ -104,7 +139,7 @@ class App
     rescue StandardError => e
       p "cannot add label. Error: #{e}"
     else
-      p '>' * 50
+      p '.' * 50
     end
 
 
@@ -113,9 +148,9 @@ class App
     begin
       book.add_genre = genre
     rescue StandardError => e
-      p "cannot add gener. Error: #{e}"
+      p "cannot add genre. Error: #{e}"
     else
-      p '>' * 50
+      p '.' * 50
     end
 
     # will be selected or created a new author
@@ -125,9 +160,20 @@ class App
     rescue StandardError => e
       p "cannot add gener. Error: #{e}"
     else
-      p '>' * 50
+      p '.' * 50
     end
     @books.push(book)
+  end
+
+  def add_game
+    publish_date = accept_input 'Enter publish date [YYYY-MM-DD]:'
+    name = accept_input 'Name of the Game:'
+    multiplayer = accept_input 'Support multiplayer [True, False]:'
+    last_played_at = accept_input 'Last played date [YYYY-MM-DD]:'
+
+    game = Game.new(multiplayer: multiplayer, publish_date: publish_date, last_played_at: last_played_at, name: name)
+
+    @games.push(game)
   end
 
   def add_music_album
@@ -151,6 +197,11 @@ class App
 
   def save_all
     save_books(@books)
+
+
     save_labels(@labels)
+
+    save_authors(@authors)
+    save_games(@games)
   end
 end
