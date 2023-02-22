@@ -2,6 +2,8 @@ require_relative 'item'
 require_relative 'book'
 require_relative 'author'
 require_relative 'label'
+require_relative 'musicalbum'
+require_relative 'genre'
 
 class App
   def initialize
@@ -10,11 +12,18 @@ class App
     @authors = []
     @genres = []
     @books = []
+    @musicalbums = []
   end
 
   def list_all_books
     @books.each do |book|
       puts "#{book.publisher} -- #{book.cover_state} "
+    end
+  end
+
+  def list_music_albums
+    @musicalbums.each do |musicalbum|
+      puts "#{musicalbum.on_spotify} "
     end
   end
 
@@ -65,5 +74,24 @@ class App
     book.label = label
 
     @books.push(book)
+  end
+
+  def add_music_album
+    on_spotify = accept_input 'Enter if it is available on spotify [true, false]:'
+    publish_date = accept_input 'Enter publish date[MM-DD-YYYY]:'
+    musicalbum = MusicAlbum.new(publish_date: publish_date, on_spotify: on_spotify)
+
+    genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
+    musicalbum.genre = genre
+
+    author = accept_input 'Enter authors:'
+    musicalbum.add_author = author
+    label_title = accept_input 'Enter label title:'
+    label_color = accept_input 'Enter label color:'
+    label = Label.new(title: label_title, color: label_color)
+
+    musicalbum.label = label
+
+    @musicalbums.push(musicalbum)
   end
 end
