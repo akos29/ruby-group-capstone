@@ -2,6 +2,8 @@ require_relative 'item'
 require_relative 'book'
 require_relative 'author'
 require_relative 'label'
+require_relative 'preserve_book'
+require_relative 'preserve_label'
 require_relative 'musicalbum'
 require_relative 'genre'
 
@@ -11,14 +13,21 @@ class App
     @labels = []
     @authors = []
     @genres = []
-    @books = []
+    @books = fetch_books
     @musicalbums = []
   end
 
+  include PreserveBooks
+  include PreserveLabels
   def list_all_books
+    puts '*' * 100
+    puts "Publisher\tCover State\t Published Date\t "
+    puts '-' * 50
     @books.each do |book|
-      puts "#{book.publisher} -- #{book.cover_state} "
+      puts "#{book.publisher}\t\t#{book.cover_state}\t\t#{book.publish_date}"
     end
+    puts '*' * 100
+    accept_input('Press any key to continue ...')
   end
 
   def list_music_albums
@@ -56,22 +65,48 @@ class App
     gets.chomp
   end
 
-  def add_book
-    publisher = accept_input 'Enter Publisher:'
-    publish_date = accept_input 'Enter publish date[MM-DD-YYYY]:'
-    cover_state = accept_input 'Enter Cover state[good, bad]:'
-    book = Book.new(publisher: publisher, publish_date: publish_date, cover_state: cover_state)
-
-    genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
-    book.add_genre = genre
-
-    author = accept_input 'Enter authors:'
-    book.add_author = author
+  def add_label
     label_title = accept_input 'Enter label title:'
     label_color = accept_input 'Enter label color:'
     label = Label.new(title: label_title, color: label_color)
+    @labels.push(label)
+    label
+  end
 
+  def opt_lable
+    puts '-' * 50
+    choice = accept_input("You can Add NEW(1) or SELECT (2) existing Label\n
+      (1) Add new label\n
+      (2) Select label \n
+      (Anykey) Escape")
+    case choice.to_i
+    when 1
+      label = add_label
+    when 2
+      label = list_labels
+    end
+    puts '-' * 50
+
+    label
+  end
+
+  def add_book
+    label = opt_lable
+    puts '-' * 50
+    publisher = accept_input 'Enter Publisher:'
+    publish_date = accept_input 'Enter publish date[YYYY-MM-DD]:'
+    cover_state = accept_input 'Enter Cover state[good, bad]:'
+
+    book = Book.new(publisher: publisher, publish_date: publish_date, cover_state: cover_state)
+    # created association between book and label
     book.label = label
+
+    # will be selected or created a new genere
+    genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
+    book.add_genre = genre
+    # will be selected or created a new author
+    author = accept_input 'Enter authors:'
+    book.add_author = author
 
     @books.push(book)
   end
@@ -93,5 +128,10 @@ class App
     musicalbum.label = label
 
     @musicalbums.push(musicalbum)
+  end
+
+  def save_all
+    save_books(@books)
+    save_labels(@labels)
   end
 end
