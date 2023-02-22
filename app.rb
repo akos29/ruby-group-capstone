@@ -73,4 +73,23 @@ class App
 
     @books.push(book)
   end
+
+  def add_music_album
+    on_spotify = accept_input 'Enter if it is available on spotify [true, false]:'
+    publish_date = accept_input 'Enter publish date[MM-DD-YYYY]:'
+    musicalbum = MusicAlbum.new(publish_date: publish_date, on_spotify: on_spotify)
+
+    genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
+    musicalbum.genre = genre
+
+    author = accept_input 'Enter authors:'
+    musicalbum.add_author = author
+    label_title = accept_input 'Enter label title:'
+    label_color = accept_input 'Enter label color:'
+    label = Label.new(title: label_title, color: label_color)
+
+    musicalbum.label = label
+
+    @musicalbums.push(musicalbum)
+  end
 end
