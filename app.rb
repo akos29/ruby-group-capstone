@@ -2,6 +2,8 @@ require_relative 'item'
 require_relative 'book'
 require_relative 'author'
 require_relative 'label'
+require_relative 'musicalbum'
+require_relative 'genre'
 
 class App
   def initialize
