@@ -11,9 +11,15 @@ describe Genre do
     end
     it 'add an item to a genre (add_item method)', positive: true do
       genre = Genre.new name: 'Abc'
-
-      genre.add_item item: 'The Artist'
-      expect(genre).to have_attributes(items: ['The Artist'])
+      newitem = Item.new(publish_date: '2-21-2023')
+      genre.add_item item: newitem
+      expect(genre).to have_attributes(items: [newitem])
+    end
+    it 'add a genre to an item (add_item method)', positive: true do
+      newgenre = Genre.new name: 'Abc'
+      newitem = Item.new(publish_date: '2-21-2023')
+      newgenre.add_item item: newitem
+      expect(newitem.genre).to eq newgenre
     end
 
     it 'should not create genre without name', negative: true do
