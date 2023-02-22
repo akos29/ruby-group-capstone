@@ -130,6 +130,7 @@ class App
 
     @musicalbums.push(musicalbum)
   end
+
   def save_all
     save_books(@books)
     save_labels(@labels)
