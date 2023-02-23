@@ -58,7 +58,6 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://github.com/studiosnabeel/RubyCapstoneProject)
 - [Project Explained in Video](https://drive.google.com/file/d/1iZoP62bGkuK92h2MkcaTDXapDiL-34t2/view?usp=sharing)
 
 
