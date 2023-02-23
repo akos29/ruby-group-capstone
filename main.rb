@@ -41,6 +41,7 @@ class Main < App
       case choice
       when 1..6
         list_methods(choice)
+        list_end_tag
       when 7
         add_book
       when 8

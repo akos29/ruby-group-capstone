@@ -10,7 +10,7 @@ module PreserveBooks
 
     books.map do |book|
       books_arr << { publisher: book.publisher, cover_state: book.cover_state, publish_date: book.publish_date,
-                     label: book.label, archived: book.archived }
+                     label: book.label, genre: book.genre, archived: book.archived }
     end
 
     File.write(books_path, JSON.pretty_generate(books_arr))

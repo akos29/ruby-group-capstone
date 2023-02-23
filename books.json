@@ -1,37 +1,18 @@
 [
   {
-    "publisher": "Abc",
-    "cover_state": "bad",
-    "publish_date": "2012-11-02",
+    "publisher": "Penguin",
+    "cover_state": "good",
+    "publish_date": "2023-02-21",
     "label": null,
+    "genre": null,
     "archived": false
   },
   {
     "publisher": "Kuraz",
     "cover_state": "good",
-    "publish_date": "2022-12-20",
+    "publish_date": "2023-02-21",
     "label": null,
-    "archived": false
-  },
-  {
-    "publisher": "asd",
-    "cover_state": "bad",
-    "publish_date": "2022-02-02",
-    "label": null,
-    "archived": false
-  },
-  {
-    "publisher": "asd",
-    "cover_state": "good",
-    "publish_date": "2020-02-02",
-    "label": null,
-    "archived": false
-  },
-  {
-    "publisher": "asd",
-    "cover_state": "bad",
-    "publish_date": "2222-02-02",
-    "label": null,
+    "genre": null,
     "archived": false
   }
 ]

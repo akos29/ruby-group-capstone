@@ -41,7 +41,6 @@ class App
     @books.each do |book|
       puts "#{book.publisher}\t\t#{book.cover_state}\t\t#{book.publish_date}"
     end
-    list_end_tag
   end
 
   def list_music_albums
@@ -52,36 +51,34 @@ class App
     @musicalbums.each do |musicalbum|
       puts "#{musicalbum.on_spotify}\t\t#{musicalbum.publish_date} "
     end
-    list_end_tag
   end
 
   def list_all_games
     puts '-' * 100
-    puts "Game Name}\t\tLast played Date}"
+    puts "Game Name\t\tLast played Date"
     puts '-' * 50
     puts 'There is no Game registered yet.' if @games.empty?
     @games.each do |game|
       puts "#{game.name}\t\t#{game.last_played_at}"
     end
-    list_end_tag
   end
 
   def list_labels
     add_label if @labels.empty?
-    puts "index\t\tlabel color\t\tlabel title"
+    puts "Id\t\tlabel color\t\tlabel title"
     puts '-' * 50
-    index = 0
-    @labels.each do |label|
+    @labels.each_with_index do |label, index|
       puts "#{index + 1}\t\t#{label.color}\t\t#{label.title}"
     end
-    list_end_tag
   end
 
   def list_authors
-    @authors.each do |author|
-      puts author
+    add_author if @authors.empty?
+    puts "Id\t\tFirst Name\t\tLast Name"
+    puts '-' * 50
+    @authors.each_with_index do |author, index|
+      puts "#{index + 1}\t\t#{author.first_name}\t\t#{author.last_name}"
     end
-    list_end_tag
   end
 
   def list_genres
@@ -90,7 +87,6 @@ class App
     @genres.each do |genre|
       puts genre.name
     end
-    list_end_tag
   end
 
   def accept_input(msg)
@@ -111,6 +107,19 @@ class App
     end
   end
 
+  def add_author
+    first_name = accept_input 'Enter author\'s first name:'
+    last_name = accept_input 'Enter author\'s last name:'
+    begin
+      author = Author.new(first_name: first_name, last_name: last_name)
+    rescue StandardError
+      puts 'Cannot save author'
+    else
+      @authors.push(author)
+      author
+    end
+  end
+
   def opt_lable
     puts '-' * 50
     choice = accept_input("You can Add NEW(1) or SELECT (2) existing Label\n
@@ -121,9 +130,10 @@ class App
     when 1
       label = add_label
     when 2
-      label = list_labels
+      list_labels
+      label_choice = accept_input('Please enter you choice (Id):').to_i
+      label = @labels[label_choice - 1]
     end
-    puts '-' * 50
 
     label
   end
@@ -136,26 +146,20 @@ class App
     cover_state = accept_input 'Enter Cover state[good, bad]:'
 
     book = Book.new(publisher: publisher, publish_date: publish_date, cover_state: cover_state)
-    created association between book and label
+    # created association between book and label
     begin
       book.label = label
     rescue StandardError
-      puts 'cannot add label, Error occured.'
+      puts '.'
     end
     # will be selected or created a new genere
     genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
     begin
-      book.add_genre = genre
+      book.genre = genre
     rescue StandardError
-      puts 'cannot add genre. Error occured.'
+      puts '.'
     end
-    # will be selected or created a new author
-    author = accept_input 'Enter authors:'
-    begin
-      book.add_author = author
-    rescue StandardError
-      puts 'cannot add gener. Error occured.'
-    end
+
     @books.push(book)
   end
 
