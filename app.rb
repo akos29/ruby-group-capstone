@@ -46,11 +46,11 @@ class App
 
   def list_music_albums
     puts '*' * 100
-    puts "On Spotify\tGenre\t Published Date\t "
+    puts "On Spotify\tPublished Date\t "
     puts '-' * 50
     puts 'There is no Album registered yet.' if @musicalbums.empty?
     @musicalbums.each do |musicalbum|
-      puts "#{musicalbum.on_spotify} -- #{musicalbum.genre} -- #{musicalbum.publish_date} "
+      puts "#{musicalbum.on_spotify}\t\t#{musicalbum.publish_date} "
     end
     list_end_tag
   end
@@ -85,8 +85,10 @@ class App
   end
 
   def list_genres
+    puts 'Genres'
+    puts '-' * 50
     @genres.each do |genre|
-      puts genre
+      puts genre.name
     end
     list_end_tag
   end
@@ -102,7 +104,7 @@ class App
     begin
       label = Label.new(title: label_title, color: label_color)
     rescue StandardError
-      # p 'Cannot save label'
+      puts 'Cannot save label'
     else
       @labels.push(label)
       label
@@ -147,7 +149,6 @@ class App
     rescue StandardError
       puts 'cannot add genre. Error occured.'
     end
-
     # will be selected or created a new author
     author = accept_input 'Enter authors:'
     begin
@@ -173,11 +174,11 @@ class App
     on_spotify = accept_input 'Enter if it is available on spotify [true, false]:'
     publish_date = accept_input 'Enter publish date[YYYY-MM-DD]:'
     musicalbum = MusicAlbum.new(publish_date: publish_date, on_spotify: on_spotify)
-
-    # genre = accept_input 'Enter genre[Rock, Pop ...]:'
-    # musicalbum.genre = genre
-    # @genres.push(Genre.new(name: genre)) unless @genres.include?(genre)
+    genre = accept_input 'Enter genre[Rock, Pop ...]:'
+    newgenre = Genre.new(name: genre)
+    musicalbum.genre = newgenre
     @musicalbums.push(musicalbum)
+    @genres.push(newgenre) unless @genres.include?(newgenre)
   end
 
   def save_all
