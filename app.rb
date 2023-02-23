@@ -138,14 +138,14 @@ class App
     begin
       book.label = label
     rescue StandardError
-      p 'cannot add label. Error occured.'
+      puts 'cannot add label, Error occured.'
     end
     # will be selected or created a new genere
     genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
     begin
       book.add_genre = genre
     rescue StandardError
-      p 'cannot add genre. Error occured.'
+      puts 'cannot add genre. Error occured.'
     end
 
     # will be selected or created a new author
@@ -153,7 +153,7 @@ class App
     begin
       book.add_author = author
     rescue StandardError
-      p 'cannot add gener. Error occured.'
+      puts 'cannot add gener. Error occured.'
     end
     @books.push(book)
   end
