@@ -1,0 +1,18 @@
+[
+  {
+    "publisher": "Penguin",
+    "cover_state": "good",
+    "publish_date": "2023-02-21",
+    "label": null,
+    "genre": null,
+    "archived": false
+  },
+  {
+    "publisher": "Kuraz",
+    "cover_state": "good",
+    "publish_date": "2023-02-21",
+    "label": null,
+    "genre": null,
+    "archived": false
+  }
+]
