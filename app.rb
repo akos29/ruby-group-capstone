@@ -85,6 +85,8 @@ class App
   end
 
   def list_genres
+    puts 'Genres'
+    puts '-' * 50
     @genres.each do |genre|
       puts genre.name
     end
@@ -102,7 +104,7 @@ class App
     begin
       label = Label.new(title: label_title, color: label_color)
     rescue StandardError
-      # p 'Cannot save label'
+      puts 'Cannot save label'
     else
       @labels.push(label)
       label
@@ -138,22 +140,21 @@ class App
     begin
       book.label = label
     rescue StandardError
-      p 'cannot add label. Error occured.'
+      puts 'cannot add label. Error occured.'
     end
     # will be selected or created a new genere
     genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
     begin
       book.add_genre = genre
     rescue StandardError
-      p 'cannot add genre. Error occured.'
+      puts 'cannot add genre. Error occured.'
     end
-
     # will be selected or created a new author
     author = accept_input 'Enter authors:'
     begin
       book.add_author = author
     rescue StandardError
-      p 'cannot add gener. Error occured.'
+      puts 'cannot add gener. Error occured.'
     end
     @books.push(book)
   end
@@ -173,11 +174,11 @@ class App
     on_spotify = accept_input 'Enter if it is available on spotify [true, false]:'
     publish_date = accept_input 'Enter publish date[YYYY-MM-DD]:'
     musicalbum = MusicAlbum.new(publish_date: publish_date, on_spotify: on_spotify)
-
-    # genre = accept_input 'Enter genre[Rock, Pop ...]:'
-    # musicalbum.genre = genre
-    # @genres.push(Genre.new(name: genre)) unless @genres.include?(genre)
+    genre = accept_input 'Enter genre[Rock, Pop ...]:'
+    newgenre = Genre.new(name: genre)
+    musicalbum.genre = newgenre
     @musicalbums.push(musicalbum)
+    @genres.push(newgenre) unless @genres.include?(newgenre)
   end
 
   def save_all
