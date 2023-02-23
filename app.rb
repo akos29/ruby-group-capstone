@@ -45,11 +45,11 @@ class App
 
   def list_music_albums
     puts '*' * 100
-    puts "On Spotify\tPublished Date\t "
+    puts "On Spotify\tPublished Date\tGenre "
     puts '-' * 50
     puts 'There is no Album registered yet.' if @musicalbums.empty?
     @musicalbums.each do |musicalbum|
-      puts "#{musicalbum.on_spotify}\t\t#{musicalbum.publish_date} "
+      puts "#{musicalbum.on_spotify}\t\t#{musicalbum.publish_date}\t\t#{musicalbum.genre.name} "
     end
   end
 
