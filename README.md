@@ -25,7 +25,7 @@
 
 # 📖 Catalog of my things <a name="about-project"></a>
 
-**Catalog of my things** is a console app that will help us to keep a record of different types of things we own: books, music albums, and movies. The data is preserved in JSON files. 
+**Catalog of my things** is a console app that will help us to keep a record of different types of things we own: books, music albums, and games. The data is preserved in JSON files. 
 
 
 ## 🛠 Built With <a name="built-with"></a>
