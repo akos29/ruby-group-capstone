@@ -148,14 +148,15 @@ class App
     book = Book.new(publisher: publisher, publish_date: publish_date, cover_state: cover_state)
     # created association between book and label
     begin
-      book.label = label
+      book.label = label.title
     rescue StandardError
       puts '.'
     end
     # will be selected or created a new genere
-    genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
+    genre = accept_input 'Enter genre[Sic-fi, History ...]:'
+    newgenre = Genre.new(name: genre)
     begin
-      book.genre = genre
+      book.genre = newgenre.name
     rescue StandardError
       puts '.'
     end
