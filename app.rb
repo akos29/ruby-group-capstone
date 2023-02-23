@@ -140,7 +140,7 @@ class App
     begin
       book.label = label
     rescue StandardError
-      puts 'cannot add label. Error occured.'
+      puts 'cannot add label, Error occured.'
     end
     # will be selected or created a new genere
     genre = accept_input 'Enter genre[Comedy, Thriller ...]:'
