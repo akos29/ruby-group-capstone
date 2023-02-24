@@ -14,8 +14,6 @@ CREATE TABLE book (
   genre_id INT,
   CONSTRAINT book_fk
     FOREIGN KEY(label_id) REFERENCES label(id) ON DELETE CASCADE
-    -- FOREIGN KEY(author_id) REFERENCES author(id) ON DELETE CASCADE
-    -- FOREIGN KEY(genre_id) REFERENCES genre(id) ON DELETE CASCADE
 );
 
 CREATE TABLE musicalbums (
