@@ -1,18 +1,18 @@
 [
   {
-    "publisher": "Penguin",
-    "cover_state": "good",
-    "publish_date": "2023-02-21",
+    "publisher": "Abc",
+    "cover_state": "goood",
+    "publish_date": "2202-02-02",
     "label": null,
     "genre": null,
     "archived": false
   },
   {
-    "publisher": "Kuraz",
-    "cover_state": "good",
-    "publish_date": "2023-02-21",
-    "label": null,
-    "genre": null,
+    "publisher": "Abc1",
+    "cover_state": "bad",
+    "publish_date": "2022-02-02",
+    "label": "Gift",
+    "genre": "sci-fi",
     "archived": false
   }
 ]
