@@ -144,6 +144,15 @@ class App
     puts '.'
   end
 
+  def genre (obj, genre)
+    newgenre = Genre.new(name: genre)
+    begin
+      obj.genre = newgenre.name
+    rescue StandardError
+      puts '.'
+    end
+  end
+
   def add_book
     label = opt_lable
     puts '-' * 50
@@ -155,13 +164,8 @@ class App
     # created association between book and label
     label(book, label)
     # will be selected or created a new genere
-    genre = accept_input 'Enter genre[Sic-fi, History ...]:'
-    newgenre = Genre.new(name: genre)
-    begin
-      book.genre = newgenre.name
-    rescue StandardError
-      puts '.'
-    end
+    genre = accept_input 'Enter genre[Sci-fi, History ...]:'
+    genre(book, genre)
 
     @books.push(book)
   end

@@ -11,8 +11,16 @@
     "publisher": "Abc1",
     "cover_state": "bad",
     "publish_date": "2022-02-02",
-    "label": "Gift",
-    "genre": "sci-fi",
+    "label": null,
+    "genre": null,
+    "archived": false
+  },
+  {
+    "publisher": "Kuraz",
+    "cover_state": "bad",
+    "publish_date": "2023-02-01",
+    "label": "New",
+    "genre": "History",
     "archived": false
   }
 ]
